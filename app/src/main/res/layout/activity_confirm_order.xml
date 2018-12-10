@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这个是确认订单的页面布局-->
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="@color/yellow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="39dp"
+            android:background="@drawable/arrow_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="146dp"
+            android:layout_marginLeft="146dp"
+            android:layout_marginTop="42dp"
+            android:text="确认订单"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout01"
+        android:layout_width="336dp"
+        android:layout_height="256dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back_up_order"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="71dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="22dp"
+                android:background="#1C1E1E" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:text="订单详情"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="71dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="22dp"
+                android:background="#1C1E1E" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_order_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout02"
+        android:layout_width="336dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/back_down_order"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout01">
+
+        <LinearLayout
+            android:layout_width="match_parent"  android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="24dp">
+            <ImageView
+                android:layout_marginTop="6dp"
+                android:layout_width="14dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="18dp"
+                android:src="@drawable/icon_money_order"
+                android:layout_marginLeft="18dp" />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#595959"
+                android:text="服务价格："
+                android:layout_marginStart="8dp" />
+            <TextView
+                android:layout_marginLeft="160dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#FF0000"
+                android:text="60.00元"
+                android:layout_marginStart="160dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"  android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="16dp">
+            <ImageView
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="18dp"
+                android:layout_width="14dp"
+                android:layout_height="12dp"
+                android:src="@drawable/icon_coupon_order"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#595959"
+                android:text="优惠券："/>
+            <ImageButton
+                android:layout_marginLeft="136dp"
+                android:layout_width="84dp"
+                android:layout_height="16dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"  android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="12dp">
+            <TextView
+                android:layout_marginLeft="116dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#595959"
+                android:text="合计："/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#FF0000"
+                android:text="60.00元"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="320dp"  android:layout_height="78dp"
+            android:background="#f9f4e0"
+            android:layout_marginLeft="7dp" android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:text="备注:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:layout_marginTop="9dp"
+                android:background="@null"
+                android:layout_width="270dp"
+                android:layout_height="70dp"
+                android:gravity="top"
+                android:hint="（是否有易碎/贵重物品、预估物品体积和重量）"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#FECB51"
+        android:textSize="18sp"
+        android:text="去支付"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

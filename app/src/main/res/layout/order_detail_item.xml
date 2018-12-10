@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这个是订单详情适配器的子布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:layout_marginLeft="20dp"
+    android:layout_marginTop="9dp">
+    
+    <ImageView
+        android:id="@+id/order_detail_image"
+        android:layout_width="16dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="2dp"
+        />
+    
+    <TextView
+        android:id="@+id/order_detail_text01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#595959"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:id="@+id/order_detail_text02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#595959"
+        android:layout_marginLeft="4dp"/>
+
+</LinearLayout>

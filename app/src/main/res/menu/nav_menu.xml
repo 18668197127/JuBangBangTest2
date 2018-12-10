@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这个是Navigation的菜单选项栏-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_fabu"
+            android:icon="@drawable/icon_fabu"
+            android:title="我的发布"/>
+        <item
+            android:id="@+id/nav_dingdan"
+            android:icon="@drawable/icon_dingdan"
+            android:title="我的订单"/>
+        <item
+            android:id="@+id/nav_qianbao"
+            android:icon="@drawable/icon_qianbao"
+            android:title="我的钱包"/>
+
+        <item
+            android:id="@+id/nav_shezhi"
+            android:icon="@drawable/icon_shezhi"
+            android:title="更多设置"/>
+    </group>
+</menu>

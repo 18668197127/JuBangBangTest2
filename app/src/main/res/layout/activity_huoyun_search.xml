@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这个是点击地址跳转的查找页面布局-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="@color/yellow"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/title_button"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="42dp"
+            android:background="@drawable/menubar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:background="@color/pure_white"
+            android:singleLine="true"
+            android:autofillHints=""
+            android:layout_width="280dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></EditText>
+
+
+
+        <TextView
+            android:text="杭州"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        android:layout_width="340dp"
+        android:layout_height="460dp">
+
+        <LinearLayout
+            android:background="#FFFFFF"
+            android:orientation="horizontal"
+            android:layout_width="340dp"
+            android:layout_height="43dp">
+
+            <ImageView
+                android:src="@drawable/icon_fabu"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp" />
+            <TextView
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="15dp"
+                android:text="定位当前位置"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_location_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_gravity="bottom"
+            android:text="确认终点"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/button_confirm"
+            android:background="#FECB51"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="336dp"
+            android:layout_height="46dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

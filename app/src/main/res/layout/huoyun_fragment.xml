@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这个是位于底部的货运fragment-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/huoyun_fragment"
+    android:layout_width="344dp"
+    android:layout_height="391dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/huoyun_tablayout"
+        app:tabIndicatorColor="#FED030"
+        app:tabSelectedTextColor="@color/yellow_click"
+        app:tabTextColor="#B3B3B3"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_cartype"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"/>
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:background="#E6E6E6"
+        android:layout_marginStart="8dp" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/linear_huoyun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/begin_location"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="8dp"
+            android:hint="请选择出发地"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/end_location"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="40dp"
+            android:hint="请选择目的地"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="14dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/huoyun_image001"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="14dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/huoyun_image001"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:text="发货人"
+            android:textSize="6sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:text="收货人"
+            android:textSize="6sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="6dp"
+            android:text="¥"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="156dp"
+            android:layout_marginLeft="156dp"
+            android:layout_marginTop="6dp"
+            android:text="660"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="194dp"
+            android:layout_marginLeft="194dp"
+            android:layout_marginTop="6dp"
+            android:text="元"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/image_price_detail"
+            android:layout_width="40dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="154dp"
+            android:layout_marginLeft="154dp"
+
+            android:layout_marginTop="4dp"
+            android:background="@drawable/huoyun_price_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_price" />
+
+        <ImageButton
+            android:id="@+id/image_check"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/huoyun_check_false"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_price_detail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"
+            android:text="需要搬货服务（搬货费用需与司机协商）"
+            android:textColor="#848484"
+            android:textSize="9sp"
+            app:layout_constraintStart_toEndOf="@+id/image_check"
+            app:layout_constraintTop_toBottomOf="@+id/image_price_detail" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="8dp"
+        >
+
+        <Button
+            android:layout_marginTop="8dp"
+            android:id="@+id/button_order"
+            android:layout_width="230dp"
+            android:layout_height="36dp"
+            android:background="#FECB51"
+            android:text="立即用车"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:background="#363636"
+            android:text="预约"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
