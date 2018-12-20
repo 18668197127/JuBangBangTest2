@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity  {
     //判断货运Fragment是否加载,未加载,隐藏的旗帜flag
     private boolean huoyunflag=false;
 
+    private Bundle bundle;
+
     //声明高德地图类
     public MapView mapView;
     public AMap aMap;
@@ -101,6 +103,8 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        bundle=savedInstanceState;
 
         //活动布局显示在状态栏上并使状态栏透明
         if (Build.VERSION.SDK_INT>=21){
@@ -151,89 +155,8 @@ public class MainActivity extends AppCompatActivity  {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-
-
-        //显示地图
-        mapView = (MapView) findViewById(R.id.map_01);
-        mapView.onCreate(savedInstanceState);// 此方法必须重写
-        aMap = mapView.getMap();
-        //定位蓝点
-        MyLocationStyle myLocationStyle;
-        myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
-        //Mark初步实现(1.当前地点Mark   2.显示位置信息    3.拖拽事件:显示地点在发货栏)
-//        LatLng latLng = new LatLng(39.906901,116.397972);
-//        final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
-        //自定义蓝标的图标
-//        BitmapDescriptor bitmapDescriptor=BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.icon_map_location));
-//        BitmapDescriptor bitmapDescriptor=BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location);
-//        myLocationStyle.myLocationIcon(bitmapDescriptor);
-        myLocationStyle.interval(8000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
-        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-//aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
-        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
-        CameraUpdate mCameraUpdate = CameraUpdateFactory.zoomTo(16);
-        aMap.moveCamera(mCameraUpdate);
-
-        //获取的几个地图类有待研究!!!
-//        CameraPosition cameraPosition=aMap.getCameraPosition();
-//        Location location=aMap.getMyLocation();
-//        String  contentApprovalNumber=aMap.getMapContentApprovalNumber();
-//        cameraPosition
-//        location
-//        myLocationStyle
-//        mapView
-//        aMap
-//        location.getLatitude();
-//        location.getLongitude();
-//        Log.i(TAG, "map:"+location.getLatitude()+"  "+location.getLongitude());
-//        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
-//        Marker marker=aMap.addMarker(new MarkerOptions().position(cameraPosition.target).title("杭州滨江").snippet("江南星座"));
-
-//        aMap.setLocationSource(this);//通过aMap对象设置定位数据源的监听
-        mUiSettings = aMap.getUiSettings();//实例化UiSettings类对象
-        mUiSettings.setMyLocationButtonEnabled(true); //显示默认的定位按钮
-
-
-
-        //定位
-        //初始化定位
-        mLocationClient = new AMapLocationClient(getApplicationContext());
-        //设置定位回调监听
-        mLocationClient.setLocationListener(mLocationListener);
-        //初始化AMapLocationClientOption对象
-        mLocationOption = new AMapLocationClientOption();
-        //给定位客户端对象设置定位参数
-        mLocationClient.setLocationOption(mLocationOption);
-        //启动定位
-        mLocationClient.startLocation();
-
-//        Marker marker=aMap.addMarker(new MarkerOptions().position(latLng).title("杭州滨江").snippet("江南星座"));
-
-        //marker的拖动
-        AMap.OnMarkerDragListener markerDragListener=new AMap.OnMarkerDragListener() {
-            @Override
-            public void onMarkerDragStart(Marker marker) {
-                LatLng markerLatLng= marker.getPosition();
-//                beginLocation.setText(markerLatLng.toString());
-                Log.i("LBS", "onMarkerDragStart: "+markerLatLng.toString()+"  位置");
-            }
-
-            @Override
-            public void onMarkerDrag(Marker marker) {
-            }
-
-            @Override
-            public void onMarkerDragEnd(Marker marker) {
-                LatLng markerLatLng= marker.getPosition();
-//                beginLocation=getSupportFragmentManager().findFragmentById(R.id.huoyun_layout).getView().findViewById(R.id.begin_location);
-                beginLocation=findViewById(R.id.begin_location);
-                beginLocation.setText(markerLatLng.toString());
-                Log.i("LBS", "onMarkerDragEnd: "+markerLatLng.toString()+"  位置");
-//                huoyunFragment.setBegin();
-            }
-        };
-        aMap.setOnMarkerDragListener(markerDragListener);
-
+        //高德地图相关的初始化方法
+        initMap(savedInstanceState);
 
 
         //按钮点击事件打开滑动侧栏
@@ -342,6 +265,90 @@ public class MainActivity extends AppCompatActivity  {
         transaction.commit();
     }
 
+    //高德地图相关的初始化
+    public void initMap(Bundle savedInstanceState){
+        //显示地图
+        mapView = (MapView) findViewById(R.id.map_01);
+        mapView.onCreate(savedInstanceState);// 此方法必须重写
+        aMap = mapView.getMap();
+        //定位蓝点
+        MyLocationStyle myLocationStyle;
+        myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
+        //Mark初步实现(1.当前地点Mark   2.显示位置信息    3.拖拽事件:显示地点在发货栏)
+//        LatLng latLng = new LatLng(39.906901,116.397972);
+//        final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
+        //自定义蓝标的图标
+//        BitmapDescriptor bitmapDescriptor=BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.icon_map_location));
+//        BitmapDescriptor bitmapDescriptor=BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location);
+//        myLocationStyle.myLocationIcon(bitmapDescriptor);
+        myLocationStyle.interval(8000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+//aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
+        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
+        CameraUpdate mCameraUpdate = CameraUpdateFactory.zoomTo(16);
+        aMap.moveCamera(mCameraUpdate);
+
+        //获取的几个地图类有待研究!!!
+//        CameraPosition cameraPosition=aMap.getCameraPosition();
+//        Location location=aMap.getMyLocation();
+//        String  contentApprovalNumber=aMap.getMapContentApprovalNumber();
+//        cameraPosition
+//        location
+//        myLocationStyle
+//        mapView
+//        aMap
+//        location.getLatitude();
+//        location.getLongitude();
+//        Log.i(TAG, "map:"+location.getLatitude()+"  "+location.getLongitude());
+//        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
+//        Marker marker=aMap.addMarker(new MarkerOptions().position(cameraPosition.target).title("杭州滨江").snippet("江南星座"));
+
+//        aMap.setLocationSource(this);//通过aMap对象设置定位数据源的监听
+        mUiSettings = aMap.getUiSettings();//实例化UiSettings类对象
+        mUiSettings.setMyLocationButtonEnabled(true); //显示默认的定位按钮
+
+
+
+        //定位
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(mLocationListener);
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
+
+//        Marker marker=aMap.addMarker(new MarkerOptions().position(latLng).title("杭州滨江").snippet("江南星座"));
+
+        //marker的拖动
+        AMap.OnMarkerDragListener markerDragListener=new AMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+                LatLng markerLatLng= marker.getPosition();
+//                beginLocation.setText(markerLatLng.toString());
+                Log.i("LBS", "onMarkerDragStart: "+markerLatLng.toString()+"  位置");
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                LatLng markerLatLng= marker.getPosition();
+//                beginLocation=getSupportFragmentManager().findFragmentById(R.id.huoyun_layout).getView().findViewById(R.id.begin_location);
+                beginLocation=findViewById(R.id.begin_location);
+                beginLocation.setText(markerLatLng.toString());
+                Log.i("LBS", "onMarkerDragEnd: "+markerLatLng.toString()+"  位置");
+//                huoyunFragment.setBegin();
+            }
+        };
+        aMap.setOnMarkerDragListener(markerDragListener);
+    }
+
     //动态请求权限
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -354,6 +361,7 @@ public class MainActivity extends AppCompatActivity  {
                             finish();
                             return;
                         }
+                        initMap(bundle);
                     }
                 }else {
                     Toast.makeText(this,"发生权限请求错误,程序关闭",Toast.LENGTH_SHORT).show();
@@ -408,5 +416,9 @@ public class MainActivity extends AppCompatActivity  {
         Log.i(TAG, "onSaveInstanceState:");
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        removeFragment(huoyunFragment);
+    }
 }

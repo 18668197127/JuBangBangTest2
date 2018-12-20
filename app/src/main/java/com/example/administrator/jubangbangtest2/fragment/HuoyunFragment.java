@@ -27,8 +27,10 @@ import com.amap.api.services.route.TruckPath;
 import com.amap.api.services.route.TruckRouteRestult;
 import com.amap.api.services.route.WalkRouteResult;
 import com.example.administrator.jubangbangtest2.R;
+import com.example.administrator.jubangbangtest2.activity.ConfirmOrderActivity;
 import com.example.administrator.jubangbangtest2.activity.HuoyunSearchActivity;
 import com.example.administrator.jubangbangtest2.adapter.CarTypeViewAdapter;
+import com.example.administrator.jubangbangtest2.dialog.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +60,7 @@ public class HuoyunFragment extends Fragment {
     private LatLonPoint latLonPointBegin;
     private LatLonPoint latLonPointEnd;
     private float totalDistance=0;
+    private int priceInt=0;
 
     //用于判断check图片是否点击选中
     private boolean checkFlag=false;
@@ -127,7 +130,33 @@ public class HuoyunFragment extends Fragment {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (begin.getText().length()>=2&&end.getText().length()>=2){
+                    Log.i(TAG, "onClick: 立即用车生效"+" "+begin.getText()+" "+end.getText());
+                    final MyDialog myDialog=new MyDialog(getActivity(),R.style.Dialog_Msg);
 
+                    myDialog.setMyOnclickListener("这是外部实现的点击事件", new MyDialog.MyOnclickListener() {
+                        @Override
+                        public void onYesClick(String message) {
+                            System.out.println("测试:"+message);
+                            EditText e1=myDialog.findViewById(R.id.dialog_edit_01);
+                            EditText e2=myDialog.findViewById(R.id.dialog_edit_02);
+                            EditText e3=myDialog.findViewById(R.id.dialog_edit_03);
+                            EditText e4=myDialog.findViewById(R.id.dialog_edit_04);
+                            System.out.println(message+e1.getText());
+                            Intent intent=new Intent(getActivity(),ConfirmOrderActivity.class);
+                            intent.putExtra("begin",begin.getText().toString());
+                            intent.putExtra("end",end.getText().toString());
+                            intent.putExtra("e1",e1.getText().toString());
+                            intent.putExtra("e2",e2.getText().toString());
+                            intent.putExtra("e3",e3.getText().toString());
+                            intent.putExtra("e4",e4.getText().toString());
+                            intent.putExtra("price",priceInt+"");
+                            startActivity(intent);
+
+                        }
+                    });
+                    myDialog.show();
+                }
             }
         });
         check=getView().findViewById(R.id.image_check);
@@ -237,7 +266,7 @@ public class HuoyunFragment extends Fragment {
                                 int totalDistanceInt=Math.round(totalDistance/1000);
                                 System.out.println("测试"+totalDistance+","+truckPaths.size());
                                 System.out.println("测试"+totalDistanceInt+","+truckPaths.size());
-                                int priceInt=totalDistanceInt*2+20;
+                                priceInt=totalDistanceInt*2+20;
                                 price.setText(priceInt+"");
                             }
                         });
@@ -270,7 +299,7 @@ public class HuoyunFragment extends Fragment {
                                 int totalDistanceInt=Math.round(totalDistance/1000);
                                 System.out.println("测试"+totalDistance+","+truckPaths.size());
                                 System.out.println("测试"+totalDistanceInt+","+truckPaths.size());
-                                int priceInt=totalDistanceInt*2+20;
+                                priceInt=totalDistanceInt*2+20;
                                 price.setText(priceInt+"");
                             }
                         });
@@ -306,7 +335,7 @@ public class HuoyunFragment extends Fragment {
     }
 
     private void setVp(){
-        carTypeViewAdapter=new CarTypeViewAdapter(getFragmentManager(), carStringList,carTypeFragmentList);
+        carTypeViewAdapter=new CarTypeViewAdapter(getChildFragmentManager(), carStringList,carTypeFragmentList);
         viewPager= getView().findViewById(R.id.vp_cartype);
         viewPager.setAdapter(carTypeViewAdapter);
         tabLayout1=getView().findViewById(R.id.huoyun_tablayout);

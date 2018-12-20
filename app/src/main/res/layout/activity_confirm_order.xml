@@ -117,6 +117,7 @@
                 android:text="服务价格："
                 android:layout_marginStart="8dp" />
             <TextView
+                android:id="@+id/text_price_1"
                 android:layout_marginLeft="160dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,6 +158,7 @@
                 android:textColor="#595959"
                 android:text="合计："/>
             <TextView
+                android:id="@+id/text_price_2"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,6 +193,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/button_pay"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="#FECB51"
