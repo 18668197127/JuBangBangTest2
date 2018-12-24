@@ -44,12 +44,13 @@ public class HuoyunFragment extends Fragment {
 
 
 
-    private TabLayout tabLayout1;
+
 //    private String [] carStringList=new String []{"小型面包车","中型面包车","小型货车","中型货车"};
     private ArrayList<String> carStringList =new ArrayList<>();
     private ArrayList<Fragment> carTypeFragmentList = new ArrayList<Fragment>();
     private CarTypeViewAdapter carTypeViewAdapter;
     private ViewPager viewPager;
+    private TabLayout tabLayout1;
 
     //尝试在fragment中获取控件实例
     private EditText begin;
